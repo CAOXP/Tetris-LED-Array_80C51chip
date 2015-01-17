@@ -1,0 +1,226 @@
+C51 COMPILER V7.06   RAMDISP                                                               10/29/2008 14:40:46 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE RAMDISP
+OBJECT MODULE PLACED IN .\debug\RAMDisp.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE code\RAMDisp.C BROWSE DEBUG OBJECTEXTEND PRINT(.\debug\RAMDisp.lst) OBJECT(
+                    -.\debug\RAMDisp.obj)
+
+stmt level    source
+
+   1          /* Copyright (c) 2008 xpstudio, CaoXiangpeng
+   2           * <xpstudio2003@yahoo.com.cn>
+   3           * <http://xpstudio2003.blog.163.com>
+   4           * <http://blog.ednchina.com/xpstudio2003>
+   5           *
+   6           * All rights reserved.
+   7           *
+   8           * Redistribution and use in source and binary forms, with or without modification,
+   9           * are permitted provided that the following conditions are met:
+  10           *
+  11           * 1. Redistributions of source code must retain the above copyright notice,
+  12           *    this list of conditions and the following disclaimer.
+  13           * 2. Redistributions in binary form must reproduce the above copyright notice,
+  14           *    this list of conditions and the following disclaimer in the documentation
+  15           *    and/or other materials provided with the distribution.
+  16           * 3. The name of the author may not be used to endorse or promote products
+  17           *    derived from this software without specific prior written permission.
+  18           *
+  19           * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+  20           * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  21           * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+  22           * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  23           * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+  24           * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  25           * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  26           * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+  27           * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+  28           * OF SUCH DAMAGE.
+  29           */
+  30           
+  31          /***********************************************************************/
+  32          /*                                                                     */
+  33          /*                           RAMdisp.C                                 */
+  34          /*                                                                     */
+  35          /*                       All rights reserved                           */
+  36          /*                                                                     */
+  37          /* Project : xp-Tetris Program Project                                 */
+  38          /* IDE     : Keil uV2                                                  */
+  39          /*                                                                     */
+  40          /* Instruction: 1.the basic drive to Flash Data to the LED-Screen      */
+  41          /*                user can change the TH0 TL0 of timer0                */
+  42          /*                to change the freqence.                              */
+  43          /*                In file RAMdisp.H                                    */
+  44          /*                                                                     */
+  45          /* Date   : 13,Aug,2008                                                */
+  46          /* Author : CaoXiangpeng xpstudio2008                                  */
+  47          /*                                                                     */
+  48          /*          latest modified: 13,Aug,2008 ,23:30                        */
+  49          /***********************************************************************/
+  50          
+  51          #include "MCUREG.H"
+  52          #include "SYSCONFIG.H"
+  53          #include "RAMDisp.h" 
+  54          
+C51 COMPILER V7.06   RAMDISP                                                               10/29/2008 14:40:46 PAGE 2   
+
+  55          /***********************************************************************
+  56          * 名称: INT8U   GrayScale;
+  57          * 功能: 亮度控制变量,指示显示屏的亮度,共10个级别
+  58          *
+  59          * 作者: 曹香鹏,XPSTUDIO2008,0808
+  60          ***********************************************************************/
+  61          INT8U   GrayScale;
+  62          
+  63          
+  64          /***********************************************************************
+  65          * 名称: INT8U idata DisRAM[ROW_NUM][ROW_NUM]
+  66          * 功能: 显存,,,对应于显示屏
+  67          *                       行数:LINE_NUM
+  68          *                       列数:ROW_NUM
+  69          * 作者: 曹香鹏,XPSTUDIO2008,0808
+  70          ***********************************************************************/
+  71          INT8U idata DisRAM[LINE_NUM][ROW_NUM]=
+  72          {/*--  当前宽度x高度=32x16  --*/
+  73          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x1E,0x66,0x7C,0x00,0x32,0x66,0x66,0x00,
+  74          0x30,0x3C,0x66,0x18,0x30,0x18,0x66,0x0C,0x30,0x3C,0x66,0x06,0x32,0x66,0x66,0xF3,
+  75          0x1E,0x66,0x7C,0x06,0x00,0x00,0x60,0x0C,0x00,0x00,0x60,0x18,0x00,0x00,0x60,0x00,
+  76          0x55,0x55,0x55,0x55,0xAA,0xAA,0xAA,0xAA,0x55,0x55,0x55,0x55,0xAA,0xAA,0xAA,0xAA,
+  77          };
+  78          
+  79          /**********************************************************************
+  80          * 名称: SendSrlDt8(INT8U sData)
+  81          * 功能: 通过6B595输出数据, 一个字节.
+  82          *
+  83          * 作者: 曹香鹏,XPSTUDIO2008,0808
+  84          ***********************************************************************/
+  85          void SendSrlDt8(INT8U sData)
+  86          {
+  87   1          INT8U i;
+  88   1          set595_SRCLR();      //移位寄存器使能
+  89   1          clr595_RCK();
+  90   1          for(i=8; i>0; i--)
+  91   1          {
+  92   2              clr595_SRCK();
+  93   2              if( sData&0x80 ) set595_SERIN();
+  94   2              else             clr595_SERIN();
+  95   2              sData<<=1;
+  96   2              set595_SRCK();   //上升沿移入数据
+  97   2          }
+  98   1          set595_RCK();        //上升沿输出数据
+  99   1      }
+ 100          
+ 101          
+ 102          
+ 103          /********************************************************************** 
+ 104          * 名称: RAMDispInit()
+ 105          * 功能: 显示的初始化程序,初始化定时器0,亮度级别
+ 106          *
+ 107          * 作者: 曹香鹏,XPSTUDIO2008,0808
+ 108          ***********************************************************************/
+ 109          void RAMDispInit()
+ 110          {
+ 111   1              TMOD &=  0xF0;          //定时器0,工作方式 1
+ 112   1              TMOD |=  0x01;
+ 113   1      
+ 114   1          TH0  = T0INIT_H;    //定时初值
+ 115   1          TL0  = T0INIT_L;
+ 116   1      
+C51 COMPILER V7.06   RAMDISP                                                               10/29/2008 14:40:46 PAGE 3   
+
+ 117   1          ET0  = TRUE;        //开定时器0 中断
+ 118   1          TR0  = TRUE;        //定时器0运行
+ 119   1      
+ 120   1          GrayScale = GRAY_DEFAULT;    //亮度初值
+ 121   1      }
+ 122          
+ 123          
+ 124          
+ 125          /********************************************************************** 
+ 126          * 名称: void Timer0_INT(void) interrupt 1
+ 127          * 功能: 将显存里的内容显示出来,利用定时器0
+ 128          *
+ 129          * 作者: 曹香鹏,XPSTUDIO2008,0808
+ 130          ***********************************************************************/
+ 131          void Timer0_INT(void) interrupt 1
+ 132          {
+ 133   1          static INT8U        T0intCnt        = 0;    //用来记录进入中断的次数
+ 134   1              static INT8U    LineScanCnt = 0;        //用来记录扫描到哪一行
+ 135   1      
+ 136   1          TH0  = T0INIT_H;                                    //重新加载初值
+ 137   1          TL0  = T0INIT_L;
+ 138   1      
+ 139   1          T0intCnt ++ ;
+ 140   1      
+ 141   1              if(T0intCnt == GrayScale)CloseOut();//亮度控制
+ 142   1      
+ 143   1      
+ 144   1              if(T0intCnt < 10) return;                       //定时器中断次数
+ 145   1              T0intCnt = 0;
+ 146   1      
+ 147   1              LineScanCnt ++;
+ 148   1              if(LineScanCnt == LINE_NUM)                     //一共LINE_NUM行数据
+ 149   1                      LineScanCnt = 0;        
+ 150   1      
+ 151   1              CloseOut();                                                     //1.关闭输出,防止拖影
+ 152   1              SendSrlDt8(DisRAM[LineScanCnt][0]);     //2.输出数据
+ 153   1              SendSrlDt8(DisRAM[LineScanCnt][1]);
+ 154   1              SendSrlDt8(DisRAM[LineScanCnt][2]);
+ 155   1              SendSrlDt8(DisRAM[LineScanCnt][3]);
+ 156   1              ScanIO = LineScanCnt|(ScanIO&0XF0);     //3.确定扫描第LineScanCnt行
+ 157   1              OpenOut();                                                      //4.打开输出,显示内容
+ 158   1      }
+ 159          
+ 160          #define     dlydly  delayms(10)
+ 161          /********************************************************************** 
+ 162          * 名称: void SetPix(INT8U x, INT8U y) 
+ 163          * 功能: 将坐标x,y点的点置1
+ 164          *
+ 165          * 作者: 曹香鹏,XPSTUDIO2008,0813
+ 166          ***********************************************************************/
+ 167          void SetPix(INT8U x, INT8U y) 
+ 168          {
+ 169   1          DisRAM[y][x>>3] |=  0x80 >>(x&0x07);
+ 170   1          dlydly;
+ 171   1      }
+ 172          /********************************************************************** 
+ 173          * 名称: void ClearPix(INT8U x, INT8U y) 
+ 174          * 功能: 将坐标x,y点的点清0
+ 175          *
+ 176          * 作者: 曹香鹏,XPSTUDIO2008,0813
+ 177          ***********************************************************************/
+ 178          void ClearPix(INT8U x, INT8U y) 
+C51 COMPILER V7.06   RAMDISP                                                               10/29/2008 14:40:46 PAGE 4   
+
+ 179          {
+ 180   1          DisRAM[y][x>>3] &= ~(0x80>>(x&0x07));
+ 181   1          dlydly;
+ 182   1      }
+ 183          
+ 184          /********************************************************************** 
+ 185          * 名称: void AntiPix(INT8U x, INT8U y) 
+ 186          * 功能: 将坐标x,y点的点取反
+ 187          *
+ 188          * 作者: 曹香鹏,XPSTUDIO2008,0813
+ 189          ***********************************************************************/
+ 190          void AntiPix(INT8U x, INT8U y) 
+ 191          {
+ 192   1          DisRAM[y][x>>3] ^=  0x80 >>(x&0x07);
+ 193   1          dlydly;
+ 194   1      }
+ 195          
+ 196          //-----------------------------End of File-----------------------------//
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    288    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =     64    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

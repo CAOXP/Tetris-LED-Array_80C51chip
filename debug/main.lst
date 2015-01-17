@@ -1,0 +1,144 @@
+C51 COMPILER V7.06   MAIN                                                                  10/29/2008 14:40:49 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\debug\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE code\main.c BROWSE DEBUG OBJECTEXTEND PRINT(.\debug\main.lst) OBJECT(.\debu
+                    -g\main.obj)
+
+stmt level    source
+
+   1          /* Copyright (c) 2008 xpstudio, CaoXiangpeng
+   2           * <xpstudio2003@yahoo.com.cn>
+   3           * <http://xpstudio2003.blog.163.com>
+   4           * <http://blog.ednchina.com/xpstudio2003>
+   5           *
+   6           * All rights reserved.
+   7           *
+   8           * Redistribution and use in source and binary forms, with or without modification,
+   9           * are permitted provided that the following conditions are met:
+  10           *
+  11           * 1. Redistributions of source code must retain the above copyright notice,
+  12           *    this list of conditions and the following disclaimer.
+  13           * 2. Redistributions in binary form must reproduce the above copyright notice,
+  14           *    this list of conditions and the following disclaimer in the documentation
+  15           *    and/or other materials provided with the distribution.
+  16           * 3. The name of the author may not be used to endorse or promote products
+  17           *    derived from this software without specific prior written permission.
+  18           *
+  19           * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+  20           * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  21           * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+  22           * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  23           * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+  24           * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  25           * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  26           * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+  27           * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+  28           * OF SUCH DAMAGE.
+  29           * 
+  30           *
+  31           *
+  32           * # Version 1.0.3 CaoXiangpeng 20081029 #
+  33           */
+  34          
+  35          /***********************************************************************/
+  36          /*                                                                     */
+  37          /*                xp-Tetris Program  based on LED_Screen               */
+  38          /*                                                                     */
+  39          /*                     All Rights Reserved                             */
+  40          /*                                                                     */
+  41          /* IDE     : KEIL UV2                                                  */
+  42          /* Language: C51 (in all project files)                                */
+  43          /* Hardware: STC89C52RC 11.092Mhz                                      */
+  44          /*                                                                     */
+  45          /* Instruction: 1.this project is for a Simple xp-Tetris Game          */
+  46          /*                base on a 32*16 LED-Screen                           */
+  47          /*              2.User can set the values of x and y what you want     */
+  48          /*                to make a Game Screen.                               */
+  49          /*                In DispROM.H file.                                   */
+  50          /*                                                                     */
+  51          /* Author  : CaoXiangpeng xpstudio2008                                 */
+  52          /* Date    : 13,Aug,2008                                               */
+  53          /*                                                                     */
+  54          /* Note    : project created:  5,Aug,2008,                             */
+C51 COMPILER V7.06   MAIN                                                                  10/29/2008 14:40:49 PAGE 2   
+
+  55          /*           latest modified: 13,Aug,2008 ,23:30                       */
+  56          /***********************************************************************/
+  57          
+  58          
+  59          #include "MCUREG.H"
+  60          #include "SYSCONFIG.H"
+  61          
+  62          #include "RAMDisp.h"
+  63          //#include "UART.H"
+  64          #include "KeyInput.h"
+  65          
+  66          #include "Block.h"
+  67          
+  68          
+  69          main()
+  70          {
+  71   1          INT8U keytime;
+  72   1              RAMDispInit();
+  73   1              INT_ON();  
+  74   1      
+  75   1          while(Getkey()==0);
+  76   1      
+  77   1      TETRIS:
+  78   1          ClearTetrisScreen();    //清理屏幕
+  79   1              
+  80   1              while(1)
+  81   1          {
+  82   2      
+  83   2              if(BlockGenerate()==FAILURE)    //生成一个方块
+  84   2              {
+  85   3                  while(Getkey()==0);
+  86   3                  goto TETRIS;
+  87   3              }
+  88   2      
+  89   2      
+  90   2              while(1)            //操作这个方块
+  91   2              {
+  92   3                  keytime = 5;
+  93   3                  while(keytime--)
+  94   3                  {
+  95   4                      Delay(3);
+  96   4                      switch( Getkey() )
+  97   4                      {
+  98   5                          case 1:  MoveLeft();    break;
+  99   5                          case 2:  TurnStatus();  break;
+ 100   5                          case 3:  MoveRight();   break;
+ 101   5                      }
+ 102   4                  }
+ 103   3      
+ 104   3                  if(MoveDown() == FAILURE)
+ 105   3                  {
+ 106   4                      ClearAreaFull();
+ 107   4                      break;
+ 108   4                  }
+ 109   3      
+ 110   3              }
+ 111   2          }
+ 112   1      
+ 113   1      }
+ 114          
+ 115          
+ 116          //-----------------------------End of File-----------------------------//
+C51 COMPILER V7.06   MAIN                                                                  10/29/2008 14:40:49 PAGE 3   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     84    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

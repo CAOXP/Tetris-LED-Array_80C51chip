@@ -1,0 +1,93 @@
+C51 COMPILER V7.06   SYSCONFIG                                                             10/29/2008 14:40:45 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE SYSCONFIG
+OBJECT MODULE PLACED IN .\debug\sysConfig.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE code\sysConfig.C BROWSE DEBUG OBJECTEXTEND PRINT(.\debug\sysConfig.lst) OBJ
+                    -ECT(.\debug\sysConfig.obj)
+
+stmt level    source
+
+   1          /* Copyright (c) 2008 xpstudio, CaoXiangpeng
+   2           * <xpstudio2003@yahoo.com.cn>
+   3           * <http://xpstudio2003.blog.163.com>
+   4           * <http://blog.ednchina.com/xpstudio2003>
+   5           *
+   6           * All rights reserved.
+   7           *
+   8           * Redistribution and use in source and binary forms, with or without modification,
+   9           * are permitted provided that the following conditions are met:
+  10           *
+  11           * 1. Redistributions of source code must retain the above copyright notice,
+  12           *    this list of conditions and the following disclaimer.
+  13           * 2. Redistributions in binary form must reproduce the above copyright notice,
+  14           *    this list of conditions and the following disclaimer in the documentation
+  15           *    and/or other materials provided with the distribution.
+  16           * 3. The name of the author may not be used to endorse or promote products
+  17           *    derived from this software without specific prior written permission.
+  18           *
+  19           * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+  20           * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  21           * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+  22           * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  23           * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+  24           * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  25           * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  26           * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+  27           * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+  28           * OF SUCH DAMAGE.
+  29           */
+  30           
+  31          /***********************************************************************/
+  32          /*                                                                     */
+  33          /*                           sysConfig.C                               */
+  34          /*                                                                     */
+  35          /*                       All rights reserved                           */
+  36          /*                                                                     */
+  37          /* Project : xp-Tetris Program Project                                 */
+  38          /* IDE     : Keil uV2                                                  */
+  39          /*                                                                     */
+  40          /* Instruction: 1.some time-delay functions used in several drive-files*/
+  41          /*                11.0592MHz                                           */
+  42          /*              2.user can modified some of the varies                 */
+  43          /*                to adjust the time-delay                             */
+  44          /*                                                                     */
+  45          /* Date   : 13,Aug,2008                                                */
+  46          /* Author : CaoXiangpeng xpstudio2008                                  */
+  47          /*                                                                     */
+  48          /*          latest modified: 13,Aug,2008 ,23:30                        */
+  49          /***********************************************************************/
+  50          
+  51          #include "MCUREG.H"
+  52          #include "SYSCONFIG.H"
+  53          
+  54          
+C51 COMPILER V7.06   SYSCONFIG                                                             10/29/2008 14:40:45 PAGE 2   
+
+  55          //ÑÓÊ±º¯Êý
+  56          void delayms(INT8U i)
+  57          {
+  58   1          while(i--);
+  59   1      }
+  60          
+  61          void Delay(INT8U ii)
+  62          {
+  63   1          while(ii--)delayms(0x1f);
+  64   1      }
+  65          
+  66          
+  67          //-----------------------------End of File-----------------------------//
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     23    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
