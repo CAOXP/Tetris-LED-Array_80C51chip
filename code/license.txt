@@ -6,10 +6,7 @@
 **                                                                      **
 **************************************************************************
 
- * Copyright (c) 2008 xpstudio, CaoXiangpeng
- * <xpstudio2003@yahoo.com.cn>
- * <http://xpstudio2003.blog.163.com>
- * <http://blog.ednchina.com/xpstudio2003>
+ * Copyright (c) 2008 fpdz
  *
  * All rights reserved.
  *
@@ -44,12 +41,8 @@
 
     如用于商业用途请与作者联系.    
     
-    作者:曹香鹏,xpstudio2008
+    作者:fpdz
 
-    有问题可以与我交流
-       E-mail: xpstudio2003@yahoo.com.cn
-       BLOG  : http://xpstudio2003.blog.163.com
-       QQ    : 155137572
 
 
 

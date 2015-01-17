@@ -1,7 +1,4 @@
-/* Copyright (c) 2008 xpstudio, CaoXiangpeng
- * <xpstudio2003@yahoo.com.cn>
- * <http://xpstudio2003.blog.163.com>
- * <http://blog.ednchina.com/xpstudio2003>
+/* Copyright (c) fpdz
  *
  * All rights reserved.
  *

@@ -8,10 +8,7 @@ COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE code\RAMDisp.C BROWSE DEBUG OBJECTE
 
 stmt level    source
 
-   1          /* Copyright (c) 2008 xpstudio, CaoXiangpeng
-   2           * <xpstudio2003@yahoo.com.cn>
-   3           * <http://xpstudio2003.blog.163.com>
-   4           * <http://blog.ednchina.com/xpstudio2003>
+   1          /* Copyright (c) fpdz
    5           *
    6           * All rights reserved.
    7           *
@@ -68,7 +65,7 @@ stmt level    source
   56          * 名称: INT8U   GrayScale;
   57          * 功能: 亮度控制变量,指示显示屏的亮度,共10个级别
   58          *
-  59          * 作者: 曹香鹏,XPSTUDIO2008,0808
+  59          * 作者: fpdz,0808
   60          ***********************************************************************/
   61          INT8U   GrayScale;
   62          
@@ -78,7 +75,7 @@ stmt level    source
   66          * 功能: 显存,,,对应于显示屏
   67          *                       行数:LINE_NUM
   68          *                       列数:ROW_NUM
-  69          * 作者: 曹香鹏,XPSTUDIO2008,0808
+  69          * 作者: fpdz,0808
   70          ***********************************************************************/
   71          INT8U idata DisRAM[LINE_NUM][ROW_NUM]=
   72          {/*--  当前宽度x高度=32x16  --*/
@@ -92,7 +89,7 @@ stmt level    source
   80          * 名称: SendSrlDt8(INT8U sData)
   81          * 功能: 通过6B595输出数据, 一个字节.
   82          *
-  83          * 作者: 曹香鹏,XPSTUDIO2008,0808
+  83          * 作者: fpdz,0808
   84          ***********************************************************************/
   85          void SendSrlDt8(INT8U sData)
   86          {
@@ -116,7 +113,7 @@ stmt level    source
  104          * 名称: RAMDispInit()
  105          * 功能: 显示的初始化程序,初始化定时器0,亮度级别
  106          *
- 107          * 作者: 曹香鹏,XPSTUDIO2008,0808
+ 107          * 作者: fpdz,0808
  108          ***********************************************************************/
  109          void RAMDispInit()
  110          {
@@ -140,7 +137,7 @@ stmt level    source
  126          * 名称: void Timer0_INT(void) interrupt 1
  127          * 功能: 将显存里的内容显示出来,利用定时器0
  128          *
- 129          * 作者: 曹香鹏,XPSTUDIO2008,0808
+ 129          * 作者: fpdz,0808
  130          ***********************************************************************/
  131          void Timer0_INT(void) interrupt 1
  132          {
@@ -176,7 +173,7 @@ stmt level    source
  162          * 名称: void SetPix(INT8U x, INT8U y) 
  163          * 功能: 将坐标x,y点的点置1
  164          *
- 165          * 作者: 曹香鹏,XPSTUDIO2008,0813
+ 165          * 作者: fpdz,0813
  166          ***********************************************************************/
  167          void SetPix(INT8U x, INT8U y) 
  168          {
@@ -187,7 +184,7 @@ stmt level    source
  173          * 名称: void ClearPix(INT8U x, INT8U y) 
  174          * 功能: 将坐标x,y点的点清0
  175          *
- 176          * 作者: 曹香鹏,XPSTUDIO2008,0813
+ 176          * 作者: fpdz,0813
  177          ***********************************************************************/
  178          void ClearPix(INT8U x, INT8U y) 
 C51 COMPILER V7.06   RAMDISP                                                               10/29/2008 14:40:46 PAGE 4   
@@ -201,7 +198,7 @@ stmt level    source
  185          * 名称: void AntiPix(INT8U x, INT8U y) 
  186          * 功能: 将坐标x,y点的点取反
  187          *
- 188          * 作者: 曹香鹏,XPSTUDIO2008,0813
+ 188          * 作者: fpdz,0813
  189          ***********************************************************************/
  190          void AntiPix(INT8U x, INT8U y) 
  191          {

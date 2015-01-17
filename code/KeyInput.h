@@ -5,7 +5,7 @@
 /* Project : xp-Tetris Program Project                                 */
 /* IDE     : Keil uV2                                                  */
 /* Date   : 13,Aug,2008                                                */
-/* Author : CaoXiangpeng xpstudio2008                                  */
+/* Author : fpdz                                */
 /*                                                                     */
 /*          latest modified: 13,Aug,2008 ,23:30                        */
 /***********************************************************************/

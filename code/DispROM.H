@@ -1,7 +1,4 @@
-/* Copyright (c) 2008 xpstudio, CaoXiangpeng
- * <xpstudio2003@yahoo.com.cn>
- * <http://xpstudio2003.blog.163.com>
- * <http://blog.ednchina.com/xpstudio2003>
+/* Copyright (c) fpdz
  *
  * All rights reserved.
  *
@@ -35,7 +32,7 @@
 /* Project : xp-Tetris Program Project                                 */
 /* IDE     : Keil uV2                                                  */
 /* Date   : 13,Aug,2008                                                */
-/* Author : CaoXiangpeng xpstudio2008                                  */
+/* Author : fpdz                             */
 /*                                                                     */
 /*          latest modified: 13,Aug,2008 ,23:30                        */
 /***********************************************************************/
@@ -111,7 +108,7 @@ INT8U code  XBytesEnd[]  = {0xff,0x80,0xc0,0xe0,0xf0,0xf8,0xfc,0xfe};
 *       每行表示一个内容,,只表示了第一个状态的样子
 *       其它按顺时针转图形可得      
 *
-* 作者: 曹香鹏,XPSTUDIO2008,12,Aug,2008
+* 作者: fpdz,12,Aug,2008
 ***********************************************************************/
 INT8U code TtrsBlck[]={ //
 /*  ■
@@ -152,7 +149,7 @@ INT8U code TtrsBlck[]={ //
 * 功能: 图形指针数组
 *       指示了各种方块在图形代码里的最初指针
 *
-* 作者: 曹香鹏,XPSTUDIO2008,12,Aug,2008
+* 作者: fpdz,12,Aug,2008
 ***********************************************************************/
 INT8U code TtrsBlckPoint[ ]={    0, //Middle
                                 16, //Left
@@ -169,7 +166,7 @@ INT8U code TtrsBlckPoint[ ]={    0, //Middle
 * 功能: 方块状态个数
 *       表示每种方块的状态的个数       
 *
-* 作者: 曹香鹏,XPSTUDIO2008,12,Aug,2008
+* 作者: fpdz,12,Aug,2008
 ***********************************************************************/
 INT8U code TtrsBlckStsNum[ ]={  4,  //Middle
                                 4,  //Left

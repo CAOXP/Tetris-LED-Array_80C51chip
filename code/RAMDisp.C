@@ -1,7 +1,4 @@
-/* Copyright (c) 2008 xpstudio, CaoXiangpeng
- * <xpstudio2003@yahoo.com.cn>
- * <http://xpstudio2003.blog.163.com>
- * <http://blog.ednchina.com/xpstudio2003>
+/* Copyright (c) fpdz
  *
  * All rights reserved.
  *
@@ -43,7 +40,7 @@
 /*                In file RAMdisp.H                                    */
 /*                                                                     */
 /* Date   : 13,Aug,2008                                                */
-/* Author : CaoXiangpeng xpstudio2008                                  */
+/* Author : fpdz                                */
 /*                                                                     */
 /*          latest modified: 13,Aug,2008 ,23:30                        */
 /***********************************************************************/
@@ -56,7 +53,7 @@
 * 名称: INT8U   GrayScale;
 * 功能: 亮度控制变量,指示显示屏的亮度,共10个级别
 *
-* 作者: 曹香鹏,XPSTUDIO2008,0808
+* 作者: fpdz,0808
 ***********************************************************************/
 INT8U   GrayScale;
 
@@ -66,7 +63,7 @@ INT8U   GrayScale;
 * 功能: 显存,,,对应于显示屏
 *			行数:LINE_NUM
 *			列数:ROW_NUM
-* 作者: 曹香鹏,XPSTUDIO2008,0808
+* 作者: fpdz,0808
 ***********************************************************************/
 INT8U idata DisRAM[LINE_NUM][ROW_NUM]=
 {/*--  当前宽度x高度=32x16  --*/
@@ -80,7 +77,7 @@ INT8U idata DisRAM[LINE_NUM][ROW_NUM]=
 * 名称: SendSrlDt8(INT8U sData)
 * 功能: 通过6B595输出数据, 一个字节.
 *
-* 作者: 曹香鹏,XPSTUDIO2008,0808
+* 作者: fpdz,0808
 ***********************************************************************/
 void SendSrlDt8(INT8U sData)
 {
@@ -104,7 +101,7 @@ void SendSrlDt8(INT8U sData)
 * 名称: RAMDispInit()
 * 功能: 显示的初始化程序,初始化定时器0,亮度级别
 *
-* 作者: 曹香鹏,XPSTUDIO2008,0808
+* 作者: fpdz,0808
 ***********************************************************************/
 void RAMDispInit()
 {
@@ -126,7 +123,7 @@ void RAMDispInit()
 * 名称: void Timer0_INT(void) interrupt 1
 * 功能: 将显存里的内容显示出来,利用定时器0
 *
-* 作者: 曹香鹏,XPSTUDIO2008,0808
+* 作者: fpdz,0808
 ***********************************************************************/
 void Timer0_INT(void) interrupt 1
 {
@@ -162,7 +159,7 @@ void Timer0_INT(void) interrupt 1
 * 名称: void SetPix(INT8U x, INT8U y) 
 * 功能: 将坐标x,y点的点置1
 *
-* 作者: 曹香鹏,XPSTUDIO2008,0813
+* 作者: fpdz,0813
 ***********************************************************************/
 void SetPix(INT8U x, INT8U y) 
 {
@@ -173,7 +170,7 @@ void SetPix(INT8U x, INT8U y)
 * 名称: void ClearPix(INT8U x, INT8U y) 
 * 功能: 将坐标x,y点的点清0
 *
-* 作者: 曹香鹏,XPSTUDIO2008,0813
+* 作者: fpdz,0813
 ***********************************************************************/
 void ClearPix(INT8U x, INT8U y) 
 {
@@ -185,7 +182,7 @@ void ClearPix(INT8U x, INT8U y)
 * 名称: void AntiPix(INT8U x, INT8U y) 
 * 功能: 将坐标x,y点的点取反
 *
-* 作者: 曹香鹏,XPSTUDIO2008,0813
+* 作者: fpdz,0813
 ***********************************************************************/
 void AntiPix(INT8U x, INT8U y) 
 {

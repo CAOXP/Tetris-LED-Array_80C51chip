@@ -2,7 +2,7 @@
 **
 **                       STC AP to ISP File 
 **
-** Written by : Xiangpeng Cao,xpstudio2008
+** Written by : fpdz
 **
 ** Note:你只需要把STC_APtoISP.H文件包含到你的工程中
         并在你的系统初始化文件里添加Init_APtoISP_byUart()即可

@@ -3,7 +3,7 @@
 /*                       Uart Drive Code File                          */
 /*                                                                     */
 /* C FileName : Uart.c     Uart.h                                      */
-/* Written by : Xiangpeng Cao,xpstudio2008                             */
+/* Written by : fpdz                            */
 /***********************************************************************/
 
 #include "MCUREG.H"

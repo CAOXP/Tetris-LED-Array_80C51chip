@@ -1,8 +1,4 @@
-/* Copyright (c) 2008 xpstudio, CaoXiangpeng
- * <xpstudio2003@yahoo.com.cn>
- * <http://xpstudio2003.blog.163.com>
- * <http://blog.ednchina.com/xpstudio2003>
- *
+/* Copyright (c) fpdz
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -48,7 +44,7 @@
 /*                to make a Game Screen.                               */
 /*                In DispROM.H file.                                   */
 /*                                                                     */
-/* Author  : CaoXiangpeng xpstudio2008                                 */
+/* Author  : fpdz                          */
 /* Date    : 13,Aug,2008                                               */
 /*                                                                     */
 /* Note    : project created:  5,Aug,2008,                             */

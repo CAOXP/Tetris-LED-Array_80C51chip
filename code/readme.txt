@@ -1,7 +1,4 @@
-/* Copyright (c) 2008 xpstudio, CaoXiangpeng
- * <xpstudio2003@yahoo.com.cn>
- * <http://xpstudio2003.blog.163.com>
- * <http://blog.ednchina.com/xpstudio2003>
+/* Copyright (c) fpdz
  *
  * All rights reserved.
  *
@@ -97,7 +94,4 @@
 -------------------------------------------------------------------------------------------
 
 2008,08,14 00:33
-于山东大学
-曹香鹏
-xpstudio2008
-http://xpstudio2003.blog.163.com
+fpdz
